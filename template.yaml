@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: azure-spring-boot-backend-template
-  title: Create a Spring Boot Backend application with CI (Tekton) and CD (ArgoCD) manifests
+  title: Create a Spring Boot Backend application with Azure devops and CD (ArgoCD) manifests on Azure Repos
   description: Create a starter Spring Boot backend application with a CI pipeline
   tags:
     - recommended
@@ -175,27 +175,27 @@ spec:
           javaPackageName: ${{ parameters.javaPackageName }}
           sourceControl: github.com # If using a Hosted Enterprise GithHub replace with your internal domain
 
-    - id: catalogTemplate
-      name: Generating the Catalog Info Component
-      action: fetch:template
-      input:
-        url: ../../../skeletons/catalog-info/
-        values:
-          name: ${{ parameters.componentId }}
-          orgName: ${{ parameters.orgName }}
-          repoName: ${{ parameters.repoName }}
-          owner: ${{ parameters.owner }}
-          system: ${{ parameters.system }}
-          applicationType: service
-          description: ${{ parameters.description }}
-          namespace: ${{ parameters.namespace }}-dev
-          ci: ${{ parameters.ci }}
-          artifactId: ${{ parameters.artifactId }}
-          sourceControl: github.com # If using a Hosted Enterprise GithHub replace with your internal domain
-          imageRegistry: ${{ parameters.image_registry }}
-          imageOrganization: ${{ parameters.image_organization }}
-          imageName: ${{ parameters.artifactId }}
-          clusterDomainUrl: ${{ parameters.cluster_domain_url }}
+    # - id: catalogTemplate
+    #   name: Generating the Catalog Info Component
+    #   action: fetch:template
+    #   input:
+    #     url: ../../../skeletons/catalog-info/
+    #     values:
+    #       name: ${{ parameters.componentId }}
+    #       orgName: ${{ parameters.orgName }}
+    #       repoName: ${{ parameters.repoName }}
+    #       owner: ${{ parameters.owner }}
+    #       system: ${{ parameters.system }}
+    #       applicationType: service
+    #       description: ${{ parameters.description }}
+    #       namespace: ${{ parameters.namespace }}-dev
+    #       ci: ${{ parameters.ci }}
+    #       artifactId: ${{ parameters.artifactId }}
+    #       sourceControl: github.com # If using a Hosted Enterprise GithHub replace with your internal domain
+    #       imageRegistry: ${{ parameters.image_registry }}
+    #       imageOrganization: ${{ parameters.image_organization }}
+    #       imageName: ${{ parameters.artifactId }}
+    #       clusterDomainUrl: ${{ parameters.cluster_domain_url }}
 
     - id: publish
       name: create azure repo
