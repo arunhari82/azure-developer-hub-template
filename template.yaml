@@ -31,11 +31,11 @@ spec:
           default: my-springboot-app
           ui:field: EntityNamePicker
         orgName:
-          title: Git Organization Name
+          title: Azure Organization Name
           type: string
         repoName:
-          title: Git Repository Name
-          description: Unique name for this app git repository
+          title: Azure Repository Name
+          description: Unique name for this app Azure repository
           default: my-springboot-app
           type: string
         description:
@@ -197,6 +197,13 @@ spec:
           imageName: ${{ parameters.artifactId }}
           clusterDomainUrl: ${{ parameters.cluster_domain_url }}
 
+    - id: publish
+      name: create azure repo
+      action: publish:azure
+      input:
+        repoUrl: https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}     
+        description: ${{ parameters.description }}
+        defaultBranch: main
     # - id: publish
     #   name: Publishing to the Source Code Repository
     #   action: publish:github
