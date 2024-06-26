@@ -201,7 +201,7 @@ spec:
       name: create azure repo
       action: publish:azure
       input:
-        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&project=Developer%20Hub%20Demo&organization=${{ parameters.orgName }}
+        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&project=Developer%20Hub%20Demo&organization=${{ parameters.orgName }}&owner=${{ parameters.owner }}
         description: ${{ parameters.description }}
         defaultBranch: main
         gitAuthorName: "Arun Hariharan"
