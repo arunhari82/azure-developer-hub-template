@@ -25,7 +25,7 @@ metadata:
     {%- endif %}
 
     {%- if values.ci == "../../../skeletons/azure/" %}
-    dev.azure.com/project: Developer Hub Demo
+    dev.azure.com/project: "Developer Hub Demo"
     dev.azure.com/build-definition: azure-${{ values.repoName }}-pipeline
     {%- endif %}
    
