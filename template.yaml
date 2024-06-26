@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: azure-spring-boot-backend-template
-  title: Create a Spring Boot Backend application with Azure devops and CD (ArgoCD) manifests on Azure Repos
+  title: Azure Devops Spring Boot template
   description: Create a starter Spring Boot backend application with a CI pipeline
   tags:
     - recommended
