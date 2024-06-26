@@ -201,7 +201,7 @@ spec:
       name: create azure repo
       action: publish:azure
       input:
-        repoUrl: dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}     
+        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&project=Developer%20Hub%20Demo&organization=${{ parameters.orgName }}
         description: ${{ parameters.description }}
         defaultBranch: main
     # - id: publish
