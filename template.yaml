@@ -204,6 +204,8 @@ spec:
         repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&project=Developer%20Hub%20Demo&organization=${{ parameters.orgName }}
         description: ${{ parameters.description }}
         defaultBranch: main
+        gitAuthorName: "Arun Hariharan"
+        gitAuthorEmail: "anattama@redhat.com"
     # - id: publish
     #   name: Publishing to the Source Code Repository
     #   action: publish:github
