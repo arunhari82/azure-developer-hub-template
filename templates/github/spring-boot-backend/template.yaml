@@ -98,9 +98,11 @@ spec:
           enum:
             - ../../../skeletons/github-actions/
             - ../../../skeletons/tekton/
+            - ../../../skeletons/azure/
           enumNames:
             - GitHub Action
             - Tekton
+            - Azure
       dependencies:
         ci:
           oneOf:
@@ -173,29 +175,29 @@ spec:
           groupId: ${{ parameters.groupId }}
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
-          sourceControl: github.com # If using a Hosted Enterprise GithHub replace with your internal domain
+          sourceControl: dev.azure.com # If using a Hosted Enterprise GithHub replace with your internal domain
 
-    # - id: catalogTemplate
-    #   name: Generating the Catalog Info Component
-    #   action: fetch:template
-    #   input:
-    #     url: ../../../skeletons/catalog-info/
-    #     values:
-    #       name: ${{ parameters.componentId }}
-    #       orgName: ${{ parameters.orgName }}
-    #       repoName: ${{ parameters.repoName }}
-    #       owner: ${{ parameters.owner }}
-    #       system: ${{ parameters.system }}
-    #       applicationType: service
-    #       description: ${{ parameters.description }}
-    #       namespace: ${{ parameters.namespace }}-dev
-    #       ci: ${{ parameters.ci }}
-    #       artifactId: ${{ parameters.artifactId }}
-    #       sourceControl: github.com # If using a Hosted Enterprise GithHub replace with your internal domain
-    #       imageRegistry: ${{ parameters.image_registry }}
-    #       imageOrganization: ${{ parameters.image_organization }}
-    #       imageName: ${{ parameters.artifactId }}
-    #       clusterDomainUrl: ${{ parameters.cluster_domain_url }}
+    - id: catalogTemplate
+      name: Generating the Catalog Info Component
+      action: fetch:template
+      input:
+        url: ../../../skeletons/catalog-info/
+        values:
+          name: ${{ parameters.componentId }}
+          orgName: ${{ parameters.orgName }}
+          repoName: ${{ parameters.repoName }}
+          owner: ${{ parameters.owner }}
+          system: ${{ parameters.system }}
+          applicationType: service
+          description: ${{ parameters.description }}
+          namespace: ${{ parameters.namespace }}-dev
+          ci: ${{ parameters.ci }}
+          artifactId: ${{ parameters.artifactId }}
+          sourceControl: dev.azure.com # If using a Hosted Enterprise GithHub replace with your internal domain
+          imageRegistry: ${{ parameters.image_registry }}
+          imageOrganization: ${{ parameters.image_organization }}
+          imageName: ${{ parameters.artifactId }}
+          clusterDomainUrl: ${{ parameters.cluster_domain_url }}
 
     - id: publish
       name: create azure repo
