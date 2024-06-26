@@ -158,6 +158,7 @@ spec:
                           title: Registry Organization
                           type: string
                           description: Name of the Quay Organization
+                          default: 'redhat_na_ssa'
 
   steps:
     - id: sourceCodeTemplate
