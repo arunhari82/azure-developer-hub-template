@@ -94,13 +94,11 @@ spec:
           title: Select a CI method
           type: string
           description: This action will create a CI pipeline for your application based on chosen method
-          default: ../../../skeletons/github-actions/
+          default: ../../../skeletons/azure/
           enum:
-            - ../../../skeletons/github-actions/
             - ../../../skeletons/tekton/
             - ../../../skeletons/azure/
           enumNames:
-            - GitHub Action
             - Tekton
             - Azure
       dependencies:
@@ -109,7 +107,7 @@ spec:
             - properties:
                 # Show no extra properties when GitHub Actions is selected
                 ci:
-                  const: ../../../skeletons/github-actions/
+                  const: ../../../skeletons/azure/
             - required:
                 - image_registry
                 - image_host
