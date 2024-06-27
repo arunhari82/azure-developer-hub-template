@@ -199,7 +199,7 @@ spec:
           clusterDomainUrl: ${{ parameters.cluster_domain_url }}
 
     - id: publish
-      name: create azure repo
+      name: Create Azure Repo
       action: publish:azure
       input:
         repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&organization=${{ parameters.orgName }}&owner=Developer%20Hub%20Demo
@@ -207,6 +207,19 @@ spec:
         defaultBranch: main
         gitAuthorName: "Arun Hariharan"
         gitAuthorEmail: "anattama@redhat.com"
+
+    - id: createPipeline
+      name: Create Azure Pipeline
+      action: azure:pipeline:create
+      input:
+        organization: ${{ parameters.orgName }}
+        project: "Developer Hub Demo"
+        folder: "/"
+        name: "Azure-${{ parameters.repoName }}-pipeline"
+        repositoryId: ${{ steps.publish.output.repositoryId }}
+        repositoryName: ${{ parameters.repoName }}
+        
+
     # - id: publish
     #   name: Publishing to the Source Code Repository
     #   action: publish:github
