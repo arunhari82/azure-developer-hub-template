@@ -218,6 +218,7 @@ spec:
         name: "Azure-${{ parameters.repoName }}-pipeline"
         repositoryId: ${{ steps.publish.output.repositoryId }}
         repositoryName: ${{ parameters.repoName }}
+    
         
 
     # - id: publish
