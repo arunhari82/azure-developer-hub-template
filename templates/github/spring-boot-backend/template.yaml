@@ -263,8 +263,8 @@ spec:
       action: argocd:create-resources
       input:
         appName: ${{ parameters.artifactId }}-bootstrap
-        argoInstance: openshift-gitops
-        namespace: openshift-gitops
+        argoInstance: main
+        namespace: janus-argocd
         repoUrl:  https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
         path: "argocd/"
 
