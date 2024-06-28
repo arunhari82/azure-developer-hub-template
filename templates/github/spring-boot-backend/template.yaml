@@ -215,7 +215,7 @@ spec:
         organization: ${{ parameters.orgName }}
         project: "Developer Hub Demo"
         folder: "/"
-        name: "Azure-${{ parameters.repoName }}-pipeline"
+        name: "azure-${{ parameters.repoName }}-pipeline"
         repositoryId: ${{ steps.publish.output.repositoryId }}
         repositoryName: ${{ parameters.repoName }}
 
