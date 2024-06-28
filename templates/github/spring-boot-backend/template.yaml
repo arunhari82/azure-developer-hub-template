@@ -218,66 +218,44 @@ spec:
         name: "Azure-${{ parameters.repoName }}-pipeline"
         repositoryId: ${{ steps.publish.output.repositoryId }}
         repositoryName: ${{ parameters.repoName }}
-    
-        
 
-    # - id: publish
-    #   name: Publishing to the Source Code Repository
-    #   action: publish:github
-    #   input:
-    #     allowedHosts: ["github.com"] # If using a Hosted Enterprise GithHub replace with your internal domain
-    #     description: ${{ parameters.description }}
-    #     # If using a Hosted Enterprise GithHub replace with your internal domain
-    #     repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.repoName }}
-    #     defaultBranch: main
+    - id: register
+      name: Registering the Catalog Info Component
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
 
-    # - id: register
-    #   name: Registering the Catalog Info Component
-    #   action: catalog:register
-    #   input:
-    #     repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-    #     catalogInfoPath: /catalog-info.yaml
+    - id: template-gitops-deployment
+      name: Generating Deployment Resources
+      action: fetch:template
+      input:
+        url: ./manifests
+        copyWithoutTemplating: []
+        values:
+          component_id: ${{ parameters.componentId }}
+          destination: https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
+          repository_name: https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}
+          git_owner: ${{ parameters.orgName }}
+          cluster: ${{ parameters.cluster_domain_url }}
+          namespace: ${{ parameters.namespace }}-dev
+          image_registry: ${{ parameters.image_registry }}
+          image_host: ${{ parameters.image_host }}
+          image_organization: ${{ parameters.image_organization }}
+          image_name: ${{ parameters.artifactId }}
+          port: ${{ parameters.port }}
+        targetPath: ./tenant-gitops
 
-    # - id: template-gitops-deployment
-    #   name: Generating Deployment Resources
-    #   action: fetch:template
-    #   input:
-    #     url: ./manifests
-    #     copyWithoutTemplating: []
-    #     values:
-    #       component_id: ${{ parameters.componentId }}
-    #       destination: https://github.com/${{ parameters.orgName }}/${{ parameters.repoName }}-gitops
-    #       source_repository: https://github.com/${{ parameters.orgName }}/${{ parameters.repoName }}
-    #       repository_name: ${{ parameters.repoName }}
-    #       git_owner: ${{ parameters.orgName }}
-    #       cluster: ${{ parameters.cluster_domain_url }}
-    #       namespace: ${{ parameters.namespace }}-dev
-    #       image_registry: ${{ parameters.image_registry }}
-    #       image_host: ${{ parameters.image_host }}
-    #       image_organization: ${{ parameters.image_organization }}
-    #       image_name: ${{ parameters.artifactId }}
-    #       port: ${{ parameters.port }}
-    #     targetPath: ./tenant-gitops
-
-    # - id: publish-gitops
-    #   name: Publishing to Resource Repository
-    #   action: publish:github
-    #   input:
-    #     repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.repoName }}-gitops.git
-    #     title: gitops resources for ${{ parameters.artifactId }}
-    #     description: gitops resources for ${{ parameters.artifactId }}
-    #     sourcePath: ./tenant-gitops
-    #     repoVisibility: public
-    #     #Allow specific users, teams, or apps to bypass pull request requirements.
-    #     # bypassPullRequestAllowances:
-    #     #   apps:
-    #     #     - "app_name"
-    #     #   users:
-    #     #     - "user_name"
-    #     #   teams:
-    #     #     - "team_name"
-    #     #Protect the default branch after creating the repository. The default value is 'true'
-    #     protectDefaultBranch: false
+    - id: publish-gitops
+      name: Publishing to Resource Repository
+      action: publish:azure
+      input:
+        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}-gitops&organization=${{ parameters.orgName }}&owner=Developer%20Hub%20Demo
+        description: ${{ parameters.description }}
+        defaultBranch: main
+        gitAuthorName: "Arun Hariharan"
+        gitAuthorEmail: "anattama@redhat.com"
+       
 
     # - id: create-argocd-resources
     #   name: Create ArgoCD Resources
