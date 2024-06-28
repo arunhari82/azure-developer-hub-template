@@ -257,15 +257,15 @@ spec:
         gitAuthorEmail: "anattama@redhat.com"
        
 
-    # - id: create-argocd-resources
-    #   name: Create ArgoCD Resources
-    #   action: argocd:create-resources
-    #   input:
-    #     appName: ${{ parameters.artifactId }}-bootstrap
-    #     argoInstance: openshift-gitops
-    #     namespace: openshift-gitops
-    #     repoUrl: https://github.com/${{ parameters.orgName }}/${{ parameters.repoName }}-gitops.git
-    #     path: "argocd/"
+    - id: create-argocd-resources
+      name: Create ArgoCD Resources
+      action: argocd:create-resources
+      input:
+        appName: ${{ parameters.artifactId }}-bootstrap
+        argoInstance: openshift-gitops
+        namespace: openshift-gitops
+        repoUrl:  https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
+        path: "argocd/"
 
   output:
     links:
