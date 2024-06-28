@@ -209,7 +209,7 @@ spec:
         gitAuthorEmail: "anattama@redhat.com"
 
     - id: createPipeline
-      name: Create Azure Pipeline
+      name: Configuring Azure Pipeline
       action: azure:pipeline:create
       input:
         organization: ${{ parameters.orgName }}
