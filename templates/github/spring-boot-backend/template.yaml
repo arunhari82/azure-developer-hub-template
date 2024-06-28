@@ -258,15 +258,15 @@ spec:
         sourcePath: ./tenant-gitops
        
 
-    # - id: create-argocd-resources
-    #   name: Create ArgoCD Resources
-    #   action: argocd:create-resources
-    #   input:
-    #     appName: ${{ parameters.artifactId }}-bootstrap
-    #     argoInstance: openshift-gitops
-    #     namespace: openshift-gitops
-    #     repoUrl:  https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
-    #     path: "argocd/"
+    - id: create-argocd-resources
+      name: Create ArgoCD Resources
+      action: argocd:create-resources
+      input:
+        appName: ${{ parameters.artifactId }}-bootstrap
+        argoInstance: openshift-gitops
+        namespace: openshift-gitops
+        repoUrl:  https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
+        path: "argocd/"
 
   output:
     links:
