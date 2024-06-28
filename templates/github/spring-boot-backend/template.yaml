@@ -199,7 +199,7 @@ spec:
           clusterDomainUrl: ${{ parameters.cluster_domain_url }}
 
     - id: publish
-      name: Create Azure Repo
+      name: Publishing Code Repo
       action: publish:azure
       input:
         repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&organization=${{ parameters.orgName }}&owner=Developer%20Hub%20Demo
@@ -255,6 +255,7 @@ spec:
         defaultBranch: main
         gitAuthorName: "Arun Hariharan"
         gitAuthorEmail: "anattama@redhat.com"
+        sourcePath: ./tenant-gitops
        
 
     # - id: create-argocd-resources
