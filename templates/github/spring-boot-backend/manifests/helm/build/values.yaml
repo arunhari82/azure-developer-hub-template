@@ -10,10 +10,13 @@ git:
   name: ${{ values.repository_name }}
 
 image:
-  registry: ${{ values.image_registry }}
-  host: ${{ values.image_host }}
-  organization: ${{ values.image_organization }}
+  registry: 'Quay'
+  host: 'quay.io'
+  organization: redhat-na-ssa
   name: ${{ values.image_name }}
 
 maven:
   mirrorUrl: 'https://repo1.maven.org/maven2/'
+
+secrets:
+  githubPAT: ""

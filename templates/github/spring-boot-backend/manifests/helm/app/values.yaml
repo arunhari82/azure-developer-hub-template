@@ -14,9 +14,9 @@ replicaCount: 1
 
 image:
   pullPolicy: IfNotPresent
-  registry: ${{ values.image_registry }}
-  host: ${{ values.image_host }}
-  organization: ${{ values.image_organization }}
+  registry: Quay
+  host: quay.io
+  organization: redhat_na_ssa
   name: ${{ values.image_name }}
   # Overrides the image tag whose default is the chart appVersion.
 
@@ -80,3 +80,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+secrets:
+  registryEncodedDockerConfigJson: ewogICJhdXRocyI6IHsKICAgICJxdWF5LmlvIjogewogICAgICAiYXV0aCI6ICJjbVZrYUdGMFgyNWhYM056WVN0aGVuVnlaWEJwY0dWc2FXNWxPamczTmpkSlNqYzJObEJVTUVGUFR6Z3dNRnBETWs0ME4wTlhSVlZEV0RVMFRrVkxVVmd4VjA5T1JFRktPVGhMUlRsWldVd3lTazVXUXpsT1FVVXlTVGM9IiwKICAgICAgImVtYWlsIjogIiIKICAgIH0KICB9Cn0=
