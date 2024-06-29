@@ -8,3 +8,5 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 stringData:
   url: ${{ values.destination }}
+  type: git
+  password: ${{ values.token }}

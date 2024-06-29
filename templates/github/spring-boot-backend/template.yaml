@@ -89,7 +89,11 @@ spec:
     - title: Provide information about the CI method
       required:
         - ci
+        - token
       properties:
+        token:
+          title: Azure Personal Access Token to Connect to Repo
+          type: string     
         ci:
           title: Select a CI method
           type: string
@@ -244,6 +248,7 @@ spec:
           image_organization: ${{ parameters.image_organization }}
           image_name: ${{ parameters.artifactId }}
           port: ${{ parameters.port }}
+          token: ${{ parameters.token }}
         targetPath: ./tenant-gitops
 
     - id: publish-gitops
