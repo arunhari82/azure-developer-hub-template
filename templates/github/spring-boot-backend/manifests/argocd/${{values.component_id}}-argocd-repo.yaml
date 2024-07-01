@@ -9,4 +9,3 @@ metadata:
 stringData:
   url: ${{ values.destination }}
   type: git
-  password: ${{ values.token }}
