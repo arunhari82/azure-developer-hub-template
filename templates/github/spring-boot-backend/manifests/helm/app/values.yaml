@@ -19,6 +19,7 @@ image:
   organization: redhat_na_ssa
   name: ${{ values.image_name }}
   # Overrides the image tag whose default is the chart appVersion.
+  tag: latest
 
 imagePullSecrets:
   - name: ${{ values.component_id }}-registry-creds
