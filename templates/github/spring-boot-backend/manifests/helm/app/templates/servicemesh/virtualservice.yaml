@@ -2,7 +2,7 @@ kind: VirtualService
 apiVersion: networking.istio.io/v1beta1
 metadata:
   name: ${{ values.component_id }}-vs
-  namespace: ${{ values.component_id }}-dev
+  namespace: "{{ .Values.namespace.name }}"
 spec:
   hosts:
     - '*'
@@ -20,4 +20,3 @@ spec:
             host: ${{ values.component_id }}
             port:
               number: 8080
-status: {}

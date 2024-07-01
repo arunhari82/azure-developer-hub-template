@@ -2,7 +2,7 @@ apiVersion: maistra.io/v1
 kind: ServiceMeshMember
 metadata:
   name: default
-  namespace: ${{ values.component_id }}-dev
+  namespace:  {{ .Values.namespace.name }}
 spec:
   controlPlaneRef:
     name: basic-control-plane
