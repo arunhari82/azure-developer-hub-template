@@ -29,6 +29,7 @@ metadata:
     dev.azure.com/build-definition: azure-${{ values.repoName }}-pipeline
     {%- endif %}
    
+    argocd/app-selector: rht-gitops.com/janus-argocd=${{ values.repoName }}-bootstrap
     argocd/app-name: ${{ values.artifactId }}-dev
     backstage.io/kubernetes-id: ${{ name }}
     backstage.io/techdocs-ref: dir:.
@@ -46,6 +47,12 @@ metadata:
     - url: https://devspaces${{ values.clusterDomainUrl }}/#https://${{ values.sourceControl }}/${{ values.orgName }}/${{ values.repoName }}
       title: OpenShift Dev Spaces (VS Code editor)
       icon: web
+    - url: https://${{ values.repoName }}-${{ values.repoName }}-dev${{ values.clusterDomainUrl }}/api/hello
+      title: Application
+      icon: web  
+  tags:
+    - java
+    - spring-boot    
 spec:
   type: ${{ values.applicationType }}
   {%- if values.system %}
