@@ -1,43 +1,32 @@
-# Default values for springboot-template.
+# Default values for servicemesh.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
-app:
-  name: ${{ values.component_id }}
-
-namespace:
-  enabled: true
-  argocd:
-    name: default
 
 replicaCount: 1
 
 image:
+  repository: nginx
   pullPolicy: IfNotPresent
-  registry: Quay
-  host: quay.io
-  organization: redhat_na_ssa
-  name: ${{ values.image_name }}
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: ""
 
-imagePullSecrets:
-  - name: ${{ values.component_id }}-registry-creds
-
-nameOverride: "${{ values.component_id }}"
+imagePullSecrets: []
+nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ${{ values.component_id }}
+  name: ""
 
-podAnnotations: 
-   sidecar.istio.io/inject: 'true'
+podAnnotations: {}
+podLabels: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -52,11 +41,23 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: ${{values.port}}
+  port: 80
 
-# route: 
-#   host: ""
-#   path: /
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -70,6 +71,15 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -77,11 +87,21 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# Additional volumes on the output Deployment definition.
+volumes: []
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
-
-secrets:
-  registryEncodedDockerConfigJson: ewogICJhdXRocyI6IHsKICAgICJxdWF5LmlvIjogewogICAgICAiYXV0aCI6ICJjbVZrYUdGMFgyNWhYM056WVN0aGVuVnlaWEJwY0dWc2FXNWxPamczTmpkSlNqYzJObEJVTUVGUFR6Z3dNRnBETWs0ME4wTlhSVlZEV0RVMFRrVkxVVmd4VjA5T1JFRktPVGhMUlRsWldVd3lTazVXUXpsT1FVVXlTVGM9IiwKICAgICAgImVtYWlsIjogIiIKICAgIH0KICB9Cn0=
