@@ -5,13 +5,13 @@ metadata:
   title: Azure Devops Spring Boot With ServiceMesh template
   description: Create a starter Spring Boot backend application with a Azure CI pipeline, Argo CD Gitops, Service Mesh 
   tags:
-    - service mesh
+    - service-mesh
     - spring-boot
     - java
     - maven
-    - azure pipelines (ci)
-    - argco (cd)
-    - azure repos (scm)
+    - azure-pipelines-(ci)
+    - argco-(cd)
+    - azure-repos-(scm)
 spec:
   owner: janus-authors
   system: janus-idp
