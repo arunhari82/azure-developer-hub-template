@@ -9,9 +9,9 @@ metadata:
     - spring-boot
     - java
     - maven
-    - azure-pipelines-(ci)
-    - argco-(cd)
-    - azure-repos-(scm)
+    - azure-pipelines-ci
+    - argocd-gitops
+    - azure-repos
 spec:
   owner: janus-authors
   system: janus-idp
