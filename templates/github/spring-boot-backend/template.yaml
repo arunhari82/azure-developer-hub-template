@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: azure-spring-boot-backend-template
-  title: Azure Devops Spring Boot template
+  title: Azure Devops Spring Boot With ServiceMesh template
   description: Create a starter Spring Boot backend application with a CI pipeline
   tags:
     - recommended

@@ -47,12 +47,16 @@ metadata:
     - url: https://devspaces.apps.cluster-bhtt8.sandbox1712.opentlc.com/#https://anattama@dev.azure.com/anattama/Developer%20Hub%20Demo/_git/${{ values.repoName }}
       title: OpenShift Dev Spaces (VS Code editor)
       icon: web
-    - url: https://${{ values.repoName }}-${{ values.repoName }}-dev.apps.cluster-bhtt8.sandbox1712.opentlc.com/api/hello
-      title: Application
+    - url: https://${{ values.repoName }}-gateway-${{ values.repoName }}-dev.apps.cluster-bhtt8.sandbox1712.opentlc.com
+      title: Deployed Application
       icon: web  
   tags:
     - java
-    - spring-boot    
+    - spring-boot
+    - OpenShift Service Mesh
+    - Azure Pipeline (CI)
+    - OpenShift Gitops (CD)
+    - Azure Repos (SCM)
 spec:
   type: ${{ values.applicationType }}
   {%- if values.system %}
