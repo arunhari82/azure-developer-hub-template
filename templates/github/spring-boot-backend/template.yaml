@@ -5,10 +5,13 @@ metadata:
   title: Azure Devops Spring Boot With ServiceMesh template
   description: Create a starter Spring Boot backend application with a CI pipeline
   tags:
-    - recommended
+    - service mesh
     - spring-boot
     - java
     - maven
+    - azure pipelines (ci)
+    - argco (cd)
+    - azure repos (scm)
 spec:
   owner: janus-authors
   system: janus-idp
