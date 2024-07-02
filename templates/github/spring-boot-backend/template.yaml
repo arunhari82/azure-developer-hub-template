@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: azure-spring-boot-backend-template
   title: Azure Devops Spring Boot With ServiceMesh template
-  description: Create a starter Spring Boot backend application with a CI pipeline
+  description: Create a starter Spring Boot backend application with a Azure CI pipeline, Argo CD Gitops, Service Mesh 
   tags:
     - service mesh
     - spring-boot
