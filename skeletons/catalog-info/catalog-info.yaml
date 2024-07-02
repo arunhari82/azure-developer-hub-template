@@ -53,10 +53,10 @@ metadata:
   tags:
     - java
     - spring-boot
-    - OpenShift Service Mesh
-    - Azure Pipeline (CI)
-    - OpenShift Gitops (CD)
-    - Azure Repos (SCM)
+    - openshift-service-mesh
+    - azure-pipelines-ci
+    - argocd-gitops
+    - azure-repos
 spec:
   type: ${{ values.applicationType }}
   {%- if values.system %}
