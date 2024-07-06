@@ -4,7 +4,7 @@ metadata:
   name: ${{ values.component_id }}-gateway
   namespace: ${{ values.component_id }}-dev
 spec:
-  host: ${{ values.component_id }}-gateway-${{ values.component_id }}-dev.apps.cluster-bhtt8.sandbox1712.opentlc.com
+  host: ${{ values.component_id }}-gateway-${{ values.component_id }}-dev.apps.cluster-trh6z.sandbox1949.opentlc.com
   to:
     kind: Service
     name: ${{ values.component_id }}-dev-gateway
