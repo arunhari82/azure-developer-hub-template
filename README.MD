@@ -14,9 +14,11 @@ This new template can be registered on developer hub instance with Register exis
   1) Azure devops Account and Org
   2) Create a Azure Project with name : "Developer Hub Demo"
   3) Personal Access Token with following 
-      Build - Read and Execute
-      Code - Full
-      Packaging - Read ,Write, & Manage
-      Pipeline Resources - Use and Manage
-      Pull Request Threads - Read & write
-      Release - Read
+       ``` 
+            Build - Read and Execute
+            Code - Full
+            Packaging - Read ,Write, & Manage
+            Pipeline Resources - Use and Manage
+            Pull Request Threads - Read & write
+            Release - Read
+        ```
