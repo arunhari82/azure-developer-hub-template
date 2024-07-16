@@ -22,3 +22,14 @@ This new template can be registered on developer hub instance with Register exis
             Pull Request Threads - Read & write
             Release - Read
         ```
+
+## TAP Demo Changes : 
+
+   1) Add New Dynamic plugin to create Azure Pipeline to `backstage-rhtap-values.yaml` under the `janus-idp-gitops` repo
+        ```
+            # Azure Pipeline
+            - package: '@parfuemerie-douglas/scaffolder-backend-module-azure-pipelines-dynamic@1.2.0'
+                integrity: 'sha512-CC8fxc7uqzUJKBKx6vMziJNe895wMbTCkJdTPIlp2IhmF8bztmBXli3SdGBjL1woSmyW0A30u0OSF3ZqLTZh5g=='
+                disabled: false
+        ```        
+            
