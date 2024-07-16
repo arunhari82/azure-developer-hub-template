@@ -22,10 +22,21 @@ This new template can be registered on developer hub instance with Register exis
             Pull Request Threads - Read & write
             Release - Read
         ```
+   4) Create a NPM registry in Azure Artifacts by `create feed` and name it as `mynpmregistry`
 
 ## TAP Demo Changes : 
 
-   1) Add New Dynamic plugin to create Azure Pipeline to `backstage-rhtap-values.yaml` under the `janus-idp-gitops` repo
+   1) Upload Dynamic plugin to Azure Artificatory
+   
+      a) Create .npmrc file from sample file provided from `./TAPDemo-artificats/sample .npmrc file` under home directory. Please make sure you replace all the <<>> with correct values
+
+      b) Execute the command below to push to registry
+
+            `npm publish parfuemerie-douglas-scaffolder-backend-module-azure-pipelines-dynamic-1.2.0.tgz`
+
+
+   
+   2) Add New Dynamic plugin to create Azure Pipeline to `backstage-rhtap-values.yaml` under the `janus-idp-gitops` repo
         ```
             # Azure Pipeline
             - package: '@parfuemerie-douglas/scaffolder-backend-module-azure-pipelines-dynamic@1.2.0'
