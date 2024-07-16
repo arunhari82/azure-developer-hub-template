@@ -40,10 +40,24 @@ This new template can be registered on developer hub instance with Register exis
     
 
 3) Fix the values in the following files     
-        ```
+        ``` 
             1) ./TAPDemo-artificats/dynamic-plugins-npmrc.yaml
             2) ./TAPDemo-artificats/azure-rhdh-secret.yaml
         ```
-4) Copy the above fixed files under directory path `janus-idp-gitops/charts/backstage/templates` in `janus-idp-gitops` in gitlab of TAP Demo.
+4) Copy the above fixed files under directory path `janus-idp-gitops/charts/backstage/templates` in repo `janus-idp-gitops` in gitlab of TAP Demo.
 
-5) 
+5) Update the following env variables in  `backstage-rhtap-values.yaml`. These variables needs to be added under following path in yaml `upstream->backstage->extraEnvVars`
+
+    ```
+      - name: AZURE_PERSONAL_ACCESS_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: AZURE_PERSONAL_ACCESS_TOKEN
+            name: azure-rhdh-secret
+      - name: AZURE_ORG_NAME
+        valueFrom:
+          secretKeyRef:
+            key: AZURE_ORG_NAME
+            name: azure-rhdh-secret  
+
+    ```
