@@ -40,8 +40,10 @@ This new template can be registered on developer hub instance with Register exis
     
 
 3) Fix the values in the following files     
+        ```
             1) ./TAPDemo-artificats/dynamic-plugins-npmrc.yaml
             2) ./TAPDemo-artificats/azure-rhdh-secret.yaml
+        ```
 4) Copy the above fixed files under directory path `janus-idp-gitops/charts/backstage/templates` in `janus-idp-gitops` in gitlab of TAP Demo.
 
 5) 
