@@ -36,11 +36,17 @@ This new template can be registered on developer hub instance with Register exis
 
 
    
-   2) Add New Dynamic plugin to create Azure Pipeline to `backstage-rhtap-values.yaml` under the `janus-idp-gitops` repo
-        ```
-            # Azure Pipeline
-            - package: '@parfuemerie-douglas/scaffolder-backend-module-azure-pipelines-dynamic@1.2.0'
-                integrity: 'sha512-CC8fxc7uqzUJKBKx6vMziJNe895wMbTCkJdTPIlp2IhmF8bztmBXli3SdGBjL1woSmyW0A30u0OSF3ZqLTZh5g=='
-                disabled: false
-        ```        
-            
+    2) Add New Dynamic plugin to create Azure Pipeline to `backstage-rhtap-values.yaml` under the `janus-idp-gitops` repo
+
+      This sample file can be gotten from `./TAPDemo-artificats/plugin-add.yaml`
+       
+
+    3) Fix the values in the following files
+
+            ```          
+              1) ./TAPDemo-artificats/dynamic-plugins-npmrc.yaml
+              2) ./TAPDemo-artificats/azure-rhdh-secret.yaml
+            ```  
+    4) Copy the above fixed files under directory path `janus-idp-gitops/charts/backstage/templates` in `janus-idp-gitops` in gitlab of TAP Demo.
+
+    5) 
