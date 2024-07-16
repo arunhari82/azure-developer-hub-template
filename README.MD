@@ -1,4 +1,4 @@
-# Developer Hub Template for Spring boot app + Azure Devops (CI) + Argo (CD) + Service Mesh
+# Developer Hub Template for Spring boot app + Azure Repos + Azure Devops (CI) + Argo (CD) + Service Mesh
 
 This repository contains the Backstage Template used to create the Kubernetes resources needed to build/deploy a simple Spring Boot application and configures Azure Pipelines (CI) , Argo (Gitops) and also deploys ServiceMesh resources
 
