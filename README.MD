@@ -32,7 +32,9 @@ This new template can be registered on developer hub instance with Register exis
 
       b) Execute the command below to push to registry
 
-            `npm publish parfuemerie-douglas-scaffolder-backend-module-azure-pipelines-dynamic-1.2.0.tgz`
+            ```
+            npm publish parfuemerie-douglas-scaffolder-backend-module-azure-pipelines-dynamic-1.2.0.tgz
+            ```
 
 
    
