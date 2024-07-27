@@ -43,10 +43,10 @@ metadata:
     quay.io/repository-slug: ${{ values.imageOrganization }}/${{ values.imageName }}
     {%- endif %}
   links:
-    - url: https://devspaces.apps.cluster-trh6z.sandbox1949.opentlc.com/#https://anattama@dev.azure.com/anattama/Developer%20Hub%20Demo/_git/${{ values.repoName }}
+    - url: https://devspaces.apps.cluster-h6fh7.sandbox550.opentlc.com/#https://anattama@dev.azure.com/anattama/Developer%20Hub%20Demo/_git/${{ values.repoName }}
       title: OpenShift Dev Spaces (VS Code editor)
       icon: web
-    - url: https://${{ values.repoName }}-gateway-${{ values.repoName }}-dev.apps.cluster-trh6z.sandbox1949.opentlc.com/api/hello
+    - url: https://${{ values.repoName }}-gateway-${{ values.repoName }}-dev.apps.cluster-h6fh7.sandbox550.opentlc.com/api/hello
       title: Deployed Application
       icon: web  
   tags:
