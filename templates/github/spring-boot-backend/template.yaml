@@ -258,7 +258,7 @@ spec:
       name: Publishing to Resource Repository
       action: publish:azure
       input:
-        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}-gitops&organization=${{ parameters.orgName }}&owner=Developer%20Hub%20Demo
+        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}-gitops&organization=${{ parameters.orgName }}&project=Developer%20Hub%20Demo
         description: ${{ parameters.description }}
         defaultBranch: main
         gitAuthorName: "Arun Hariharan"
