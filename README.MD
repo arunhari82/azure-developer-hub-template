@@ -58,6 +58,13 @@ This template has been designed to work only with TAP demo (https://demo.redhat.
 
     ```
 
+## ADD Integration in app-config.yaml
+
+integrations:
+  azure:
+    - host: dev.azure.com
+      credentials:
+        - personalAccessToken: ${PERSONAL_ACCESS_TOKEN}
 
 ## Registering Template.
 
