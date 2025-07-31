@@ -59,13 +59,13 @@ This template has been designed to work only with TAP demo (https://demo.redhat.
     ```
 
 ## ADD Integration in app-config.yaml
-
+```
 integrations:
   azure:
     - host: dev.azure.com
       credentials:
         - personalAccessToken: ${PERSONAL_ACCESS_TOKEN}
-
+```
 ## Registering Template.
 
 This new template can be registered on developer hub instance with Register existing component from create section. The URL should be (https://github.com/arunhari82/azure-developer-hub-template/blob/main/templates/github/spring-boot-backend/template.yaml)    
