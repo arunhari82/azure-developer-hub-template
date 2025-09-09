@@ -168,102 +168,102 @@ spec:
                           default: 'redhat_na_ssa'
 
   steps:
-    - id: sourceCodeTemplate
-      name: Generating the Source Code Component
-      action: fetch:template
-      input:
-        url: ./skeleton
-        values:
-          orgName: ${{ parameters.orgName }}
-          repoName: ${{ parameters.repoName }}
-          description: ${{ parameters.description }}
-          port: ${{ parameters.port }}
-          groupId: ${{ parameters.groupId }}
-          artifactId: ${{ parameters.artifactId }}
-          javaPackageName: ${{ parameters.javaPackageName }}
-          sourceControl: dev.azure.com # If using a Hosted Enterprise GithHub replace with your internal domain
+    # - id: sourceCodeTemplate
+    #   name: Generating the Source Code Component
+    #   action: fetch:template
+    #   input:
+    #     url: ./skeleton
+    #     values:
+    #       orgName: ${{ parameters.orgName }}
+    #       repoName: ${{ parameters.repoName }}
+    #       description: ${{ parameters.description }}
+    #       port: ${{ parameters.port }}
+    #       groupId: ${{ parameters.groupId }}
+    #       artifactId: ${{ parameters.artifactId }}
+    #       javaPackageName: ${{ parameters.javaPackageName }}
+    #       sourceControl: dev.azure.com # If using a Hosted Enterprise GithHub replace with your internal domain
 
-    - id: catalogTemplate
-      name: Generating the Catalog Info Component
-      action: fetch:template
-      input:
-        url: ../../../skeletons/catalog-info/
-        values:
-          name: ${{ parameters.componentId }}
-          orgName: ${{ parameters.orgName }}
-          repoName: ${{ parameters.repoName }}
-          owner: ${{ parameters.owner }}
-          system: ${{ parameters.system }}
-          applicationType: service
-          description: ${{ parameters.description }}
-          namespace: ${{ parameters.namespace }}-dev
-          ci: ${{ parameters.ci }}
-          artifactId: ${{ parameters.artifactId }}
-          sourceControl: dev.azure.com # If using a Hosted Enterprise GithHub replace with your internal domain
-          imageRegistry: ${{ parameters.image_registry }}
-          imageOrganization: ${{ parameters.image_organization }}
-          imageName: ${{ parameters.artifactId }}
-          clusterDomainUrl: ${{ parameters.cluster_domain_url }}
+    # - id: catalogTemplate
+    #   name: Generating the Catalog Info Component
+    #   action: fetch:template
+    #   input:
+    #     url: ../../../skeletons/catalog-info/
+    #     values:
+    #       name: ${{ parameters.componentId }}
+    #       orgName: ${{ parameters.orgName }}
+    #       repoName: ${{ parameters.repoName }}
+    #       owner: ${{ parameters.owner }}
+    #       system: ${{ parameters.system }}
+    #       applicationType: service
+    #       description: ${{ parameters.description }}
+    #       namespace: ${{ parameters.namespace }}-dev
+    #       ci: ${{ parameters.ci }}
+    #       artifactId: ${{ parameters.artifactId }}
+    #       sourceControl: dev.azure.com # If using a Hosted Enterprise GithHub replace with your internal domain
+    #       imageRegistry: ${{ parameters.image_registry }}
+    #       imageOrganization: ${{ parameters.image_organization }}
+    #       imageName: ${{ parameters.artifactId }}
+    #       clusterDomainUrl: ${{ parameters.cluster_domain_url }}
 
-    - id: publish
-      name: Publishing Code Repo
-      action: publish:azure
-      input:
-        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&organization=${{ parameters.orgName }}&project=Developer%20Hub%20Demo
-        description: ${{ parameters.description }}
-        defaultBranch: main
-        gitAuthorName: "Arun Hariharan"
-        gitAuthorEmail: "anattama@redhat.com"
+    # - id: publish
+    #   name: Publishing Code Repo
+    #   action: publish:azure
+    #   input:
+    #     repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&organization=${{ parameters.orgName }}&project=Developer%20Hub%20Demo
+    #     description: ${{ parameters.description }}
+    #     defaultBranch: main
+    #     gitAuthorName: "Arun Hariharan"
+    #     gitAuthorEmail: "anattama@redhat.com"
 
-    - id: createPipeline
-      name: Configuring Azure Pipeline
-      action: azure:pipeline:create
-      input:
-        organization: ${{ parameters.orgName }}
-        project: "Developer Hub Demo"
-        folder: "/"
-        name: "azure-${{ parameters.repoName }}-pipeline"
-        repositoryId: ${{ steps.publish.output.repositoryId }}
-        repositoryName: ${{ parameters.repoName }}
+    # - id: createPipeline
+    #   name: Configuring Azure Pipeline
+    #   action: azure:pipeline:create
+    #   input:
+    #     organization: ${{ parameters.orgName }}
+    #     project: "Developer Hub Demo"
+    #     folder: "/"
+    #     name: "azure-${{ parameters.repoName }}-pipeline"
+    #     repositoryId: ${{ steps.publish.output.repositoryId }}
+    #     repositoryName: ${{ parameters.repoName }}
 
-    - id: register
-      name: Registering the Catalog Info Component
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: /catalog-info.yaml
+    # - id: register
+    #   name: Registering the Catalog Info Component
+    #   action: catalog:register
+    #   input:
+    #     repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+    #     catalogInfoPath: /catalog-info.yaml
 
-    - id: template-gitops-deployment
-      name: Generating Deployment Resources
-      action: fetch:template
-      input:
-        url: ./manifests
-        copyWithoutTemplating: []
-        values:
-          component_id: ${{ parameters.componentId }}
-          destination: https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
-          repository_name: https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}
-          git_owner: ${{ parameters.orgName }}
-          cluster: ${{ parameters.cluster_domain_url }}
-          namespace: ${{ parameters.namespace }}-dev
-          image_registry: ${{ parameters.image_registry }}
-          image_host: ${{ parameters.image_host }}
-          image_organization: ${{ parameters.image_organization }}
-          image_name: ${{ parameters.artifactId }}
-          port: ${{ parameters.port }}
-          token: ${{ parameters.token }}
-        targetPath: ./tenant-gitops
+    # - id: template-gitops-deployment
+    #   name: Generating Deployment Resources
+    #   action: fetch:template
+    #   input:
+    #     url: ./manifests
+    #     copyWithoutTemplating: []
+    #     values:
+    #       component_id: ${{ parameters.componentId }}
+    #       destination: https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
+    #       repository_name: https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}
+    #       git_owner: ${{ parameters.orgName }}
+    #       cluster: ${{ parameters.cluster_domain_url }}
+    #       namespace: ${{ parameters.namespace }}-dev
+    #       image_registry: ${{ parameters.image_registry }}
+    #       image_host: ${{ parameters.image_host }}
+    #       image_organization: ${{ parameters.image_organization }}
+    #       image_name: ${{ parameters.artifactId }}
+    #       port: ${{ parameters.port }}
+    #       token: ${{ parameters.token }}
+    #     targetPath: ./tenant-gitops
 
-    - id: publish-gitops
-      name: Publishing to Resource Repository
-      action: publish:azure
-      input:
-        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}-gitops&organization=${{ parameters.orgName }}&project=Developer%20Hub%20Demo
-        description: ${{ parameters.description }}
-        defaultBranch: main
-        gitAuthorName: "Arun Hariharan"
-        gitAuthorEmail: "anattama@redhat.com"
-        sourcePath: ./tenant-gitops
+    # - id: publish-gitops
+    #   name: Publishing to Resource Repository
+    #   action: publish:azure
+    #   input:
+    #     repoUrl: dev.azure.com?repo=${{ parameters.repoName }}-gitops&organization=${{ parameters.orgName }}&project=Developer%20Hub%20Demo
+    #     description: ${{ parameters.description }}
+    #     defaultBranch: main
+    #     gitAuthorName: "Arun Hariharan"
+    #     gitAuthorEmail: "anattama@redhat.com"
+    #     sourcePath: ./tenant-gitops
        
 
     - id: create-argocd-resources
