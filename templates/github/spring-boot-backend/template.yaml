@@ -273,7 +273,7 @@ spec:
         appName: ${{ parameters.artifactId }}-bootstrap
         argoInstance: main
         namespace: janus-argocd
-        repoUrl: https://dev.azure.com?repo=${{ parameters.repoName }}-gitops&organization=${{ parameters.orgName }}&project=Developer%20Hub%20Demo
+        repoUrl:  https://${{ parameters.orgName }}@dev.azure.com/${{ parameters.orgName }}/Developer%20Hub%20Demo/_git/${{ parameters.repoName }}-gitops
         path: "argocd/"
 
   output:
