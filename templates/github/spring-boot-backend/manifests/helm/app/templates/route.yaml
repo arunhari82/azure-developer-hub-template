@@ -1,26 +1,18 @@
-{{- with .Values.route }}
-apiVersion: route.openshift.io/v1
 kind: Route
+apiVersion: route.openshift.io/v1
 metadata:
-  annotations:
-    "helm.sh/hook": post-install,post-upgrade
-  labels:
-    {{- include "springboot-template.labels" $ | nindent 4 }}
   name: ${{values.component_id}}
+  namespace: ${{values.component_id}}-dev
 spec:
-  {{- if .host }}
-  host: {{ .host }}
-  {{- end }}
-  {{- if .path }}
-  path: {{ .path }}
-  {{- end }}
-  port:
-    targetPort: {{ $.Values.service.port }}
+  host: ${{values.component_id}}-${{values.component_id}}-dev.apps.cluster-zj2wm.zj2wm.sandbox2740.opentlc.com
+  path: /
   to:
     kind: Service
     name: ${{values.component_id}}
-  wildcardPolicy: None
+    weight: 100
+  port:
+    targetPort: http
   tls:
-    insecureEdgeTerminationPolicy: Redirect
     termination: edge
-{{- end }}
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
