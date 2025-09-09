@@ -29,7 +29,7 @@ metadata:
     {%- endif %}
    
     argocd/app-selector: rht-gitops.com/janus-argocd=${{ values.repoName }}-bootstrap
-    argocd/app-name: ${{ values.artifactId }}-dev
+    #argocd/app-name: ${{ values.artifactId }}-dev
     backstage.io/kubernetes-id: ${{ name }}
     backstage.io/techdocs-ref: dir:.
     {%- if values.sourceControl == "gitlab.com" %}
